@@ -9,7 +9,7 @@ import fileUpload from 'express-fileupload';
 import router from './routes/index.js';
 
 //env
-import { MONGO_DB, PORT } from './env-dev.js';
+import { MONGO_DB } from './env-dev.js';
 
 //middlewares
 import { errorsHandler } from './middlewares/errorsHandler.js';
@@ -33,6 +33,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload({}));
 app.use('/api', router);
 app.use(errorsHandler);
-app.listen({ port: PORT }, () => {
-  console.log(`🚀 Server listening on port ${PORT}`);
+app.listen({ port: process.env.PORT || 5000 }, () => {
+  console.log(`🚀 Server listening on port ${process.env.PORT || 5000}`);
 });
